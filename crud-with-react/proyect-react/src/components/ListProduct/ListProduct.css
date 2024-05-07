@@ -1,0 +1,9 @@
+section {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  max-width: auto;
+  min-height: 100%;
+  gap: 20px;
+  overflow-y: auto;
+}

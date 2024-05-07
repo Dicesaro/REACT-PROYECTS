@@ -1,0 +1,39 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: thin solid #000;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #e1f7f5;
+}
+
+p {
+  font-size: 1em;
+  font-weight: bold;
+  word-spacing: balance;
+}
+
+button {
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  background: #000;
+  cursor: pointer;
+}
+
+.btn-options {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  gap: 10px;
+
+  & .btn-edit {
+    background-color: green;
+  }
+
+  & .btn-delete {
+    background-color: red;
+  }
+}
