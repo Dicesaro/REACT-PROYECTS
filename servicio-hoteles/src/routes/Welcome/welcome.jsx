@@ -1,10 +1,11 @@
 import style from "./welcome.module.css";
+import { Link } from "react-router-dom";
 export const Welcome = () => {
   return (
     <>
       <section className={style.section_welcome}>
         <h1>¡Bienvenido!</h1>
-        <a href="/register">Registra un Hotel</a>
+        <Link to="/register">Registra un Hotel</Link>
       </section>
     </>
   );
