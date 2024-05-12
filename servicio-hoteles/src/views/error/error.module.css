@@ -1,0 +1,17 @@
+.section_error {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  & h1 {
+    font-size: 4em;
+    font-weight: 600;
+    color: #fab307;
+  }
+
+  & p {
+    font-size: 2em;
+  }
+}

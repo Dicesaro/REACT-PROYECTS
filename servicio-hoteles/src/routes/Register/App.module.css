@@ -1,0 +1,48 @@
+.section_hoteles {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 100vh;
+
+  & h1 {
+    font-size: 48px;
+    color: var(--primary-color);
+  }
+}
+
+.form_hoteles {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 10px;
+  border: thin solid var(--black);
+  gap: 10px;
+  min-height: 100%;
+
+  & input {
+    align-self: stretch;
+    padding: 5px;
+    border-radius: 3px;
+    border: thin solid var(--black);
+  }
+
+  & [type="file"] {
+    border: none;
+  }
+
+  & label {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--second-color);
+  }
+
+  & button {
+    font-weight: 700;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+}

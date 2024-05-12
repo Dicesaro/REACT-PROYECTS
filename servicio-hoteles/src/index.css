@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+:root {
+  --primary-color: #fab307;
+  --second-color: #0e284e;
+  --black: #000;
+  --white: #fff;
+}
