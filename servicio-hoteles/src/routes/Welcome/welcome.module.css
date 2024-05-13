@@ -11,6 +11,10 @@
     color: var(--primary-color);
   }
 
+  & p {
+    font-size: 5em;
+  }
+
   & a {
     font-size: 1.5em;
     color: var(--second-color);
