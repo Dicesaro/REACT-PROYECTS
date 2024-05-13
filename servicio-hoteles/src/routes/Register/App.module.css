@@ -20,23 +20,6 @@
   gap: 10px;
   min-height: 100%;
 
-  & input {
-    align-self: stretch;
-    padding: 5px;
-    border-radius: 3px;
-    border: thin solid var(--black);
-  }
-
-  & [type="file"] {
-    border: none;
-  }
-
-  & label {
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--second-color);
-  }
-
   & button {
     font-weight: 700;
     background: var(--primary-color);
@@ -44,5 +27,27 @@
     border: none;
     padding: 10px;
     border-radius: 5px;
+  }
+}
+
+.input_data {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  padding: 5px;
+  border-radius: 3px;
+
+  & label {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--second-color);
+  }
+
+  & input {
+    padding: 5px;
+  }
+
+  & [type="file"] {
+    border: none;
   }
 }

@@ -1,3 +1,9 @@
 export const Hoteles = () => {
-  return <div>Hoteles registrados !</div>;
+  return (
+    <>
+      <section>
+        <h1>Aqui iran todos los hoteles registrados!</h1>
+      </section>
+    </>
+  );
 };
