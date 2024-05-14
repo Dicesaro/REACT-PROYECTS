@@ -1,4 +1,4 @@
-// import style from "./hoteles.module.css";
+import style from "./hoteles.module.css";
 export const Hoteles = ({ formData }) => {
   return (
     <>
