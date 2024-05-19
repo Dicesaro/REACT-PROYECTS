@@ -4,6 +4,7 @@ import ErrorPage from "./views/error/error-page.jsx";
 import { App } from "./routes/Register/App.jsx";
 import { Welcome } from "./routes/Welcome/welcome.jsx";
 import { Hoteles } from "./routes/Hoteles/hoteles.jsx";
+import { ImgHotel } from "./routes/ImgHotel/imghotels.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
   {
     path: "/hoteles",
     element: <Hoteles />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/imageshotels",
+    element: <ImgHotel />,
     errorElement: <ErrorPage />,
   },
 ]);
