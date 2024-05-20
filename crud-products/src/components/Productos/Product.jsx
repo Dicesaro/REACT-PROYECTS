@@ -1,5 +1,4 @@
 import "./Product.css";
-
 const Product = ({ el, setDataToEdit, deleteData }) => {
   let { name, description, stock } = el;
 

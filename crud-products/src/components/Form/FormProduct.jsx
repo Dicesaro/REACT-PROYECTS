@@ -57,7 +57,6 @@ export const FormProduct = ({
           placeholder="Producto..."
           onChange={handleChange}
           required
-          value={form.name}
         />
         <label>Descripción</label>
         <input
@@ -66,7 +65,6 @@ export const FormProduct = ({
           placeholder="Descripción..."
           onChange={handleChange}
           required
-          value={form.description}
         />
         <label>Stock</label>
         <input
@@ -75,7 +73,6 @@ export const FormProduct = ({
           placeholder="Stock..."
           onChange={handleChange}
           required
-          value={form.stock}
         />
         <div className="buttons">
           <button type="submit">Enviar</button>

@@ -38,9 +38,9 @@ export default function App() {
   return (
     <>
       <FormProduct
+        dataToEdit={dataToEdit}
         createData={createData}
         updateData={updateData}
-        dataToEdit={dataToEdit}
         setDataToEdit={setDataToEdit}
       />
       <ListProduct
