@@ -9,6 +9,7 @@
   & h1 {
     font-size: 4em;
     color: var(--primary-color);
+    text-align: center;
   }
 
   & p {
@@ -16,7 +17,16 @@
   }
 
   & a {
+    text-decoration: none;
     font-size: 1.5em;
-    color: var(--second-color);
+    color: #fff;
+  }
+
+  & button {
+    font-weight: 700;
+    background: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
   }
 }

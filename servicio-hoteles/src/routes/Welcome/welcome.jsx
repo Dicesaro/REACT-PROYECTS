@@ -5,8 +5,9 @@ export const Welcome = () => {
     <>
       <section className={style.section_welcome}>
         <h1>¡Bienvenido amigo hotelero!</h1>
-        <p>🏨</p>
-        <Link to="/register">Registra un Hotel</Link>
+        <button>
+          <Link to="/register">Registra un Hotel</Link>
+        </button>
       </section>
     </>
   );

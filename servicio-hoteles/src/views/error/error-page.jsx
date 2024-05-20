@@ -8,7 +8,7 @@ export default function ErrorPage() {
   return (
     <>
       <section className={style.section_error}>
-        <h1>Pagina no encontrada :'v !</h1>
+        <h1>Pagina no encontrada!</h1>
         <p>la ruta que buscas no existe...</p>
       </section>
     </>

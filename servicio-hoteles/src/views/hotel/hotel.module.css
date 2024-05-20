@@ -1,0 +1,36 @@
+.comp_hotel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: thin solid var(--black);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  min-width: 480px;
+
+  & h3 {
+    font-size: var(--font-header);
+  }
+
+  & img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & button {
+    font-weight: 700;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+}

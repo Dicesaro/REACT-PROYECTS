@@ -21,12 +21,16 @@
   min-height: 100%;
 
   & button {
-    font-weight: 700;
     background: var(--primary-color);
-    color: #fff;
     border: none;
     padding: 10px;
     border-radius: 5px;
+
+    & a {
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+    }
   }
 }
 
@@ -34,7 +38,7 @@
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  padding: 5px;
+  padding: 3px;
   border-radius: 3px;
 
   & label {
