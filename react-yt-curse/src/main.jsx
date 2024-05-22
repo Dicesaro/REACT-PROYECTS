@@ -1,10 +1,10 @@
-// import App from "./components/App/App.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Users } from "./components/Users/Users";
+import { Rest } from "./components/Rest.jsx";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Users />
+    <Rest />
   </React.StrictMode>
 );
