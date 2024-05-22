@@ -19,11 +19,12 @@ const initialForm = {
 //   return data;
 // };
 
-const InputData = ({ text, type, onChange, name }) => {
+const InputData = ({ text, type, onChange, name, error }) => {
   return (
     <div className={style.input_data}>
       <label>{text}</label>
       <input type={type} onChange={onChange} name={name} />
+      {error && <span className={style.error}>{error}</span>}
     </div>
   );
 };
@@ -36,6 +37,7 @@ export const Register = ({
 }) => {
   const [formData, setFormData] = useState(initialForm);
   const [imageURL, setImageURL] = useState(null);
+  const [errors, setErrors] = useState({});
   // const [departaments, setDepartments] = useState([]);
   // useEffect(() => {
   //   getDepartments().then((data) => setDepartments(data));
@@ -76,14 +78,32 @@ export const Register = ({
     }
   };
 
+  const validateForm = () => {
+    let errors = {};
+    if (!formData.name) errors.name = "El nombre es requerido";
+    if (!formData.email) errors.email = "El correo es requerido";
+    if (!formData.address) errors.address = "La dirección es requerida";
+    if (!formData.price) errors.price = "El precio es requerido";
+    if (!formData.roomtype)
+      errors.roomtype = "El tipo de habitación es requerido";
+    if (!formData.phoneNumber)
+      errors.phoneNumber = "El número de teléfono es requerido";
+    return errors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (dataToEdit) {
-      updateData(formData);
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
+      if (dataToEdit) {
+        updateData(formData);
+      } else {
+        createData(formData);
+      }
+      handleReset();
     } else {
-      createData(formData);
+      setErrors(errors);
     }
-    handleReset();
     console.log(formData);
   };
 
@@ -91,6 +111,7 @@ export const Register = ({
     setFormData(initialForm);
     setDataToEdit(null);
     setImageURL(null);
+    setErrors({});
   };
 
   return (
@@ -103,43 +124,52 @@ export const Register = ({
             name="name"
             text="Nombre:"
             onChange={handleChange}
+            error={errors.name}
           />
           <InputData
             type="email"
             name="email"
             text="Correo:"
             onChange={handleChange}
+            error={errors.email}
           />
           <InputData
             type="text"
             name="address"
             text="Direccion:"
             onChange={handleChange}
+            error={errors.address}
           />
           <InputData
             type="number"
             name="price"
             text="Precio:"
             onChange={handleChange}
+            error={errors.price}
           />
           <InputData
             type="text"
             name="roomtype"
             text="Tipo de habitacion:"
             onChange={handleChange}
+            error={errors.roomtype}
           />
           <InputData
             type="tel"
             name="phoneNumber"
             text="Numero de telefono:"
             onChange={handleChange}
+            error={errors.phoneNumber}
           />
           <InputData
             type="file"
             name="photo"
             text="Foto:"
             onChange={handleChange}
+            error={errors.photo}
           />
+
+          {imageURL && <img src={imageURL} alt="Imagen" />}
 
           {/* <div className={style.input_data}>
             <label>Departamentos</label>

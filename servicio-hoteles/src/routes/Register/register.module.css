@@ -55,3 +55,7 @@
     border: none;
   }
 }
+
+.error {
+  color: red;
+}
