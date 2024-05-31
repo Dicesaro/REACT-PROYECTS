@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import ErrorPage from "./views/error/error-page.jsx";
-import { Welcome } from "./routes/Welcome/welcome.jsx";
-import { Hoteles } from "./routes/Hoteles/hoteles.jsx";
-import Logic from "./views/logic/logic.jsx";
+import { Welcome } from "./routes/welcome/welcome.jsx";
+import { Hoteles } from "./routes/hoteles/hoteles.jsx";
+import { Register } from "./routes/register/register.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+
+const DOMAIN = "http://127.0.0.1:8000";
 
 const router = createBrowserRouter([
   {
@@ -15,18 +17,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Logic />,
+    element: <Register domain={DOMAIN} />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/hoteles",
-    element: <Hoteles />,
+    path: "/hotels",
+    element: <Hoteles domain={DOMAIN} />,
     errorElement: <ErrorPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );

@@ -1,116 +1,45 @@
-// import axios from "axios";
+import axios from "axios";
 import style from "./register.module.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Form from "../../components/Form/Form";
 
-const initialForm = {
-  name: "",
-  email: "",
-  address: "",
-  price: "",
-  roomtype: "",
-  phoneNumber: "",
-  departments: "",
+const domain = "http://127.0.0.1:8000";
+
+const postHotel = async (formData) => {
+  const { data } = await axios.post(`${domain}/api/hotels`, formData);
+  return data;
 };
 
-// const domain = "http://192.168.18.104:3000";
-// const getDepartments = async () => {
-//   const { data } = await axios.get(`${domain}/api/departments`);
-//   console.log(data);
-//   return data;
-// };
-
-const InputData = ({ text, type, onChange, name, error }) => {
-  return (
-    <div className={style.input_data}>
-      <label>{text}</label>
-      <input type={type} onChange={onChange} name={name} />
-      {error && <span className={style.error}>{error}</span>}
-    </div>
-  );
-};
-
-export const Register = ({
-  createData,
-  updateData,
-  dataToEdit,
-  setDataToEdit,
-}) => {
-  const [formData, setFormData] = useState(initialForm);
-  const [imageURL, setImageURL] = useState(null);
+export const Register = ({}) => {
   const [errors, setErrors] = useState({});
-  // const [departaments, setDepartments] = useState([]);
-  // useEffect(() => {
-  //   getDepartments().then((data) => setDepartments(data));
-  // }, []);
-
-  useEffect(() => {
-    if (dataToEdit) {
-      setFormData(dataToEdit);
-    } else {
-      setFormData(initialForm);
-    }
-  }, [dataToEdit]);
-
-  const fileToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
-
-  const handleChange = async (e) => {
-    const { name, value, files } = e.target;
-    if (name === "photo" && files.length > 0) {
-      const file = files[0];
-      const base64 = await fileToBase64(file);
-      setImageURL(base64);
-      setFormData({
-        ...formData,
-        [name]: base64,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
-  const validateForm = () => {
+  const validateForm = (formData) => {
     let errors = {};
     if (!formData.name) errors.name = "El nombre es requerido";
     if (!formData.email) errors.email = "El correo es requerido";
     if (!formData.address) errors.address = "La dirección es requerida";
     if (!formData.price) errors.price = "El precio es requerido";
-    if (!formData.roomtype)
-      errors.roomtype = "El tipo de habitación es requerido";
+    if (!formData.roomType)
+      errors.roomType = "El tipo de habitación es requerido";
     if (!formData.phoneNumber)
       errors.phoneNumber = "El número de teléfono es requerido";
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, formData) => {
     e.preventDefault();
-    const errors = validateForm();
+    const errors = validateForm(formData);
     if (Object.keys(errors).length === 0) {
-      if (dataToEdit) {
-        updateData(formData);
-      } else {
-        createData(formData);
-      }
       handleReset();
     } else {
       setErrors(errors);
     }
-    console.log(formData);
+    const { photo, ...restData } = formData;
+    postHotel({ ...restData, photos: [photo] }).then((data) => {
+      console.log("Success", data);
+    });
   };
 
   const handleReset = () => {
-    setFormData(initialForm);
-    setDataToEdit(null);
-    setImageURL(null);
     setErrors({});
   };
 
@@ -118,13 +47,15 @@ export const Register = ({
     <>
       <section className={style.section_hoteles}>
         <h1>Registro de Hotel</h1>
-        <form onSubmit={handleSubmit} className={style.form_hoteles}>
+        <Form onSubmit={handleSubmit} errors={errors} setErrors={setErrors} />
+        {/* <form onSubmit={handleSubmit} className={style.form_hoteles}>
           <InputData
             type="text"
             name="name"
             text="Nombre:"
             onChange={handleChange}
             error={errors.name}
+            value={formData.name}
           />
           <InputData
             type="email"
@@ -132,6 +63,7 @@ export const Register = ({
             text="Correo:"
             onChange={handleChange}
             error={errors.email}
+            value={formData.email}
           />
           <InputData
             type="text"
@@ -139,6 +71,7 @@ export const Register = ({
             text="Direccion:"
             onChange={handleChange}
             error={errors.address}
+            value={formData.address}
           />
           <InputData
             type="number"
@@ -146,6 +79,7 @@ export const Register = ({
             text="Precio:"
             onChange={handleChange}
             error={errors.price}
+            value={formData.price}
           />
           <InputData
             type="text"
@@ -153,6 +87,7 @@ export const Register = ({
             text="Tipo de habitacion:"
             onChange={handleChange}
             error={errors.roomtype}
+            value={formData.roomtype}
           />
           <InputData
             type="tel"
@@ -160,30 +95,45 @@ export const Register = ({
             text="Numero de telefono:"
             onChange={handleChange}
             error={errors.phoneNumber}
+            value={formData.phoneNumber}
           />
           <InputData
             type="file"
             name="photo"
             text="Foto:"
-            onChange={handleChange}
+            onChange={handleChangeFile}
             error={errors.photo}
+            // value={formData.photo}
           />
 
-          {imageURL && <img src={imageURL} alt="Imagen" />}
+          {imageURL && (
+            <img
+              className={style.prev_image}
+              src={imageURL || defaultImageURL}
+              alt="Imagen"
+            />
+          )}
 
-          {/* <div className={style.input_data}>
+          <div className={style.input_data}>
             <label>Departamentos</label>
-            <select name="" id="">
-              <option value="1">1</option>
+            <select
+              name="departments"
+              value={formData.departments}
+              onChange={handleChange}
+            >
+              <option value="1">Selecciona</option>
               {departaments?.map((department) => (
                 <option key={department.id} value={department.id}>
                   {department.name}
                 </option>
               ))}
             </select>
-          </div> */}
+          </div>
           <button>Registrar</button>
-        </form>
+          <button type="reset" onClick={handleReset}>
+            Resetear
+          </button>
+        </form> */}
       </section>
     </>
   );

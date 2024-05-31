@@ -1,32 +1,53 @@
 .section_welcome {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  min-height: 100vh;
+  background-image: url("../../assets/bg-welcome.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.img {
+  display: flex;
   justify-content: center;
   align-items: center;
+
+  & img {
+    min-height: 100vh;
+    width: 600px;
+    object-fit: cover;
+
+  }
+}
+
+
+.text {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: start;
   gap: 20px;
   min-height: 100vh;
 
   & h1 {
-    font-size: 4em;
+    font-size: 3.5rem;
     color: var(--primary-color);
     text-align: center;
   }
 
-  & p {
-    font-size: 5em;
-  }
-
   & a {
     text-decoration: none;
-    font-size: 1.5em;
-    color: #fff;
+    color: var(--primary-color);
   }
 
   & button {
-    font-weight: 700;
-    background: var(--primary-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background-color: var(--white);
+    border: medium solid var(--primary-color);
+
   }
+
+
 }

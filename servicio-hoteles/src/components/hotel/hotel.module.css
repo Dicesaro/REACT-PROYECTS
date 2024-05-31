@@ -28,9 +28,16 @@
 
   & button {
     font-weight: 700;
-    background: var(--primary-color);
     color: #fff;
     padding: 10px;
     border-radius: 5px;
+  }
+
+  & .btn_edit {
+    background: var(--edit-color);
+  }
+
+  & .btn_delete {
+    background: var(--danger-color);
   }
 }
