@@ -1,10 +1,9 @@
 .section_hotels {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   min-height: 100vh;
-  gap: 20px;
 
   & h1 {
     font-size: 3em;
@@ -17,11 +16,10 @@
   }
 }
 
-.div_hotels {
+.hotels {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  border: thin solid var(--black);
-  min-height: 100vh;
+  max-width: 90vw;
+  gap: 20px;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import ErrorPage from "./views/error/error-page.jsx";
+import ErrorPage from "./routes/error/error-page.jsx";
 import { Welcome } from "./routes/welcome/welcome.jsx";
 import { Hoteles } from "./routes/hoteles/hoteles.jsx";
 import { Register } from "./routes/register/register.jsx";

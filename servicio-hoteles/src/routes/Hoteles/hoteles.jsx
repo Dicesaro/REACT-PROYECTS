@@ -11,6 +11,11 @@ export const Hoteles = ({ domain }) => {
     return data;
   };
 
+  const deleteData = async () => {
+    const { data } = await axios.delete(`${domain}/api/hotels`);
+    return data;
+  };
+
   useEffect(() => {
     getHotels().then(({ data }) => setData(data));
   }, []);
@@ -19,17 +24,22 @@ export const Hoteles = ({ domain }) => {
 
   return (
     <>
-      <section className={style.div_hotels}>
-        <div>
-          {data?.map((el) => (
-            <Hotel
-              key={el.id}
-              el={el}
-              domain={domain}
-              // setDataToEdit={editData}
-              // deleteData={deleteData}
-            />
-          ))}
+      <section className={style.section_hotels}>
+        <h1>Hoteles Registrados</h1>
+        <div className={style.hotels}>
+          {data?.map((el) => {
+            // Muestra la ruta de la imagen en consola
+            console.log(el.photos[0]);
+            return (
+              <Hotel
+                key={el.id}
+                el={el}
+                domain={domain}
+                deleteData={deleteData}
+                // setDataToEdit={editData}
+              />
+            );
+          })}
         </div>
       </section>
     </>

@@ -2,8 +2,29 @@ import axios from "axios";
 import style from "./register.module.css";
 import React, { useState } from "react";
 import Form from "../../components/Form/Form";
+import toast, { Toaster } from "react-hot-toast";
 
 const domain = "http://127.0.0.1:8000";
+
+const messageOfSuccess = () => {
+  toast.success("Registro exitoso", {
+    style: {
+      borderRadius: "10px",
+      background: "#333",
+      color: "#fff",
+    },
+  });
+};
+
+const messageOfError = () => {
+  toast.error("Error al registrar", {
+    style: {
+      borderRadius: "10px",
+      background: "#333",
+      color: "#fff",
+    },
+  });
+};
 
 const postHotel = async (formData) => {
   const { data } = await axios.post(`${domain}/api/hotels`, formData);
@@ -29,9 +50,11 @@ export const Register = ({}) => {
     e.preventDefault();
     const errors = validateForm(formData);
     if (Object.keys(errors).length === 0) {
-      handleReset();
+      console.log("Enviado");
+      messageOfSuccess();
     } else {
       setErrors(errors);
+      messageOfError();
     }
     const { photo, ...restData } = formData;
     postHotel({ ...restData, photos: [photo] }).then((data) => {
@@ -39,101 +62,12 @@ export const Register = ({}) => {
     });
   };
 
-  const handleReset = () => {
-    setErrors({});
-  };
-
   return (
     <>
       <section className={style.section_hoteles}>
-        <h1>Registro de Hotel</h1>
+        <h1>Ingrese los datos de su hotel</h1>
         <Form onSubmit={handleSubmit} errors={errors} setErrors={setErrors} />
-        {/* <form onSubmit={handleSubmit} className={style.form_hoteles}>
-          <InputData
-            type="text"
-            name="name"
-            text="Nombre:"
-            onChange={handleChange}
-            error={errors.name}
-            value={formData.name}
-          />
-          <InputData
-            type="email"
-            name="email"
-            text="Correo:"
-            onChange={handleChange}
-            error={errors.email}
-            value={formData.email}
-          />
-          <InputData
-            type="text"
-            name="address"
-            text="Direccion:"
-            onChange={handleChange}
-            error={errors.address}
-            value={formData.address}
-          />
-          <InputData
-            type="number"
-            name="price"
-            text="Precio:"
-            onChange={handleChange}
-            error={errors.price}
-            value={formData.price}
-          />
-          <InputData
-            type="text"
-            name="roomtype"
-            text="Tipo de habitacion:"
-            onChange={handleChange}
-            error={errors.roomtype}
-            value={formData.roomtype}
-          />
-          <InputData
-            type="tel"
-            name="phoneNumber"
-            text="Numero de telefono:"
-            onChange={handleChange}
-            error={errors.phoneNumber}
-            value={formData.phoneNumber}
-          />
-          <InputData
-            type="file"
-            name="photo"
-            text="Foto:"
-            onChange={handleChangeFile}
-            error={errors.photo}
-            // value={formData.photo}
-          />
-
-          {imageURL && (
-            <img
-              className={style.prev_image}
-              src={imageURL || defaultImageURL}
-              alt="Imagen"
-            />
-          )}
-
-          <div className={style.input_data}>
-            <label>Departamentos</label>
-            <select
-              name="departments"
-              value={formData.departments}
-              onChange={handleChange}
-            >
-              <option value="1">Selecciona</option>
-              {departaments?.map((department) => (
-                <option key={department.id} value={department.id}>
-                  {department.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button>Registrar</button>
-          <button type="reset" onClick={handleReset}>
-            Resetear
-          </button>
-        </form> */}
+        <Toaster />
       </section>
     </>
   );

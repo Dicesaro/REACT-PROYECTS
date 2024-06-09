@@ -1,7 +1,8 @@
-import React from "react";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import style from "./form.module.css";
+import { useState } from "react";
+import { useDepartments } from "../../services/Departments.js";
+import { InputData } from "../Input/input.jsx";
+import { InputSelect } from "../Select/select.jsx";
 
 const initialForm = {
   name: "",
@@ -14,41 +15,13 @@ const initialForm = {
   department_id: "",
 };
 
-const domain = "http://127.0.0.1:8000";
 const defaultImageURL =
   "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
-
-const getDepartments = async () => {
-  const { data } = await axios.get(`${domain}/api/departments`);
-  console.log(data);
-  return data;
-};
-
-const InputData = ({ text, type, onChange, name, value, error }) => {
-  return (
-    <div className={style.input_data}>
-      <label>{text}</label>
-      <input
-        id={name}
-        type={type}
-        onChange={onChange}
-        name={name}
-        value={value}
-        className={error ? style.error : value ? style.valid : ""}
-      />
-      {error && <span className={style.error}>{error}</span>}
-    </div>
-  );
-};
 
 export default function Form({ onSubmit, data, errors, setErrors }) {
   const [formData, setFormData] = useState(data || initialForm);
   const [imageURL, setImageURL] = useState(defaultImageURL);
-  const [departaments, setDepartments] = useState([]);
-
-  useEffect(() => {
-    getDepartments().then((data) => setDepartments(data));
-  }, []);
+  const departaments = useDepartments();
 
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -86,6 +59,7 @@ export default function Form({ onSubmit, data, errors, setErrors }) {
       [id]: base64,
     });
   };
+
   const handleReset = () => {
     setFormData(initialForm);
     setImageURL(defaultImageURL);
@@ -151,7 +125,6 @@ export default function Form({ onSubmit, data, errors, setErrors }) {
           text="Foto:"
           onChange={handleChangeFile}
           error={errors.photo}
-          // value={formData.photo}
         />
 
         {imageURL && (
@@ -162,26 +135,21 @@ export default function Form({ onSubmit, data, errors, setErrors }) {
           />
         )}
 
-        <div className={style.input_data}>
-          <label>Departamentos</label>
-          <select
-            id="department_id"
-            name="department_id"
-            value={formData.department_id}
-            onChange={handleChange}
-          >
-            <option value="1">Selecciona</option>
-            {departaments?.map((department) => (
-              <option key={department.id} value={department.id}>
-                {department.name}
-              </option>
-            ))}
-          </select>
+        <InputSelect
+          id="department_id"
+          name="department_id"
+          value={formData.department_id}
+          onChange={handleChange}
+          options={departaments}
+          label="Departamento:"
+        />
+
+        <div className={style.buttons}>
+          <button>Registrar</button>
+          <button type="reset" onClick={handleReset}>
+            Resetear
+          </button>
         </div>
-        <button>Registrar</button>
-        <button type="reset" onClick={handleReset}>
-          Resetear
-        </button>
       </form>
     </>
   );

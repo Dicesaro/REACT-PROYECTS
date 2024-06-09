@@ -1,6 +1,6 @@
 import style from "./hotel.module.css";
 
-const Hotel = ({ el, setDataToEdit, deleteData, domain }) => {
+export const Hotel = ({ el, dataToEdit, deleteData, domain }) => {
   let {
     id,
     name,
@@ -16,7 +16,7 @@ const Hotel = ({ el, setDataToEdit, deleteData, domain }) => {
   return (
     <>
       <div key={id} className={style.comp_hotel}>
-        <div>{photos && <img src={`${domain}${photos.uri}`} alt={name} />}</div>
+        <div>{photos && <img src={`${domain}/${photos[0]}`} alt={name} />}</div>
         <div>
           <h3>{name}</h3>
           <p> Email: {email}</p>
@@ -27,10 +27,10 @@ const Hotel = ({ el, setDataToEdit, deleteData, domain }) => {
           <p> Departamento: {departments}</p>
         </div>
         <div className={style.buttons}>
-          <button className={style.btn_edit} onClick={() => setDataToEdit(el)}>
+          <button className={style.btn_edit} onClick={() => dataToEdit(el)}>
             Editar
           </button>
-          <button className={style.btn_delete} onClick={() => deleteData(name)}>
+          <button className={style.btn_delete} onClick={() => deleteData(id)}>
             Eliminar
           </button>
         </div>

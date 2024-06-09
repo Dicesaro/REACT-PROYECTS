@@ -40,8 +40,27 @@
 }
 
 .prev_image {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  min-width: 100;
+  gap: 10px;
+
+  & button {
+    width: 100%;
+
+    &:nth-child(1) {
+      background-color: var(--primary-color);
+    }
+
+    &:nth-child(2) {
+      background-color: var(--reset-color);
+    }
+  }
 }

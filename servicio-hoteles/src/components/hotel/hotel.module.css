@@ -6,11 +6,11 @@
   border: thin solid var(--black);
   border-radius: 10px;
   padding: 20px;
-  margin: 20px;
-  min-width: 480px;
+  min-width: 500px;
 
   & h3 {
     font-size: var(--font-header);
+    color: var(--primary-color);
   }
 
   & img {

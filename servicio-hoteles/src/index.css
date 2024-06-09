@@ -8,12 +8,12 @@
   font-size: 1em;
 }
 
-
 :root {
   --primary-color: #fab307;
   --second-color: #0e284e;
-  --danger-color: #f00;
-  --edit-color: #0f0;
+  --danger-color: #d53323;
+  --edit-color: #2a7817;
+  --reset-color: #00aeff;
   --bold: 500;
   --black: #000;
   --white: #fff;

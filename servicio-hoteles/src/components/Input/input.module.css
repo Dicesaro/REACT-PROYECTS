@@ -1,0 +1,30 @@
+.input_data {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  padding: 3px;
+  border-radius: 3px;
+
+  & label {
+    font-size: 24px;
+    color: var(--second-color);
+  }
+
+  & input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  & input.error {
+    border-color: var(--danger-color);
+  }
+
+  & [type="file"] {
+    border: none;
+  }
+}
+
+.error {
+  color: var(--danger-color);
+}
