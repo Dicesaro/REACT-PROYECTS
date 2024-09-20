@@ -1,26 +1,22 @@
 import "./App.css";
-import { useCatImage } from "./hooks/useCatImage.js";
-import { useCatFact } from "./hooks/useCatFact.js";
+import { useCatFact } from "./hooks/useCatFact";
+import { useCatImage } from "./hooks/useCatImage";
 
 export function App() {
-  const { fact, refreshRandomFact } = useCatFact();
+  const { fact, refreshFact } = useCatFact();
   const { imageUrl } = useCatImage({ fact });
 
   const handleClick = async () => {
-    refreshRandomFact();
+    refreshFact();
   };
 
   return (
     <main>
-      <h1>App de Gatos</h1>
-
-      <button onClick={handleClick}>Get new fact</button>
-      {fact && <h3>{fact}</h3>}
+      <h1>App de Gatitos</h1>
+      <button onClick={handleClick}>Get new fact !</button>
+      {fact && <p>{fact}</p>}
       {imageUrl && (
-        <img
-          src={imageUrl}
-          alt={`Image extracted usin the firstrhee word for ${fact}`}
-        />
+        <img src={imageUrl} alt="Image extracted using the first three words" />
       )}
     </main>
   );

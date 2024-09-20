@@ -6,7 +6,7 @@ APIs:
 
 - Imagen random: https://cataas.com/cat/says/hello
 
-- Fist Word: `https://cataas.com/cat/says/${firstWord}?fontSize=:size&fontColor=:color&json=true`
+- Use Endpoint: `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red&json=true`
 
 * Recupera un hecho aleatorio de gatos de la primera API
 

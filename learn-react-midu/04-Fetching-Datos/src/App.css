@@ -1,9 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   font-family: system-ui;
+  font-weight: 600;
+  gap: 30px;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #000;
+}
+
+img {
+  width: 500px;
 }

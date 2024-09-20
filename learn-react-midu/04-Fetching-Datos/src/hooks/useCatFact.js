@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { getRandomFact } from "../services/facts";
 
-export function useCatFact() {
+export const useCatFact = () => {
   const [fact, setFact] = useState();
 
-  const refreshRandomFact = () => {
-    getRandomFact().then((newFact) => setFact(newFact));
+  const refreshFact = () => {
+    getRandomFact(setFact).then((newFact) => setFact(newFact));
   };
 
-  // Para recuperar el fact del gato
-  useEffect(() => refreshRandomFact, []);
+  useEffect(getRandomFact, []);
 
-  return { fact, refreshRandomFact };
-}
+  return { fact, refreshFact };
+};
